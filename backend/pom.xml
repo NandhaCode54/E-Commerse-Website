@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.5</version>
         <relativePath/>
     </parent>
 
@@ -26,7 +26,8 @@
         <!-- Security CVE fixes -->
         <spring-web.version>6.2.0</spring-web.version>
         <spring-webmvc.version>6.2.0</spring-webmvc.version>
-        <spring-security.version>6.3.1</spring-security.version>
+        <spring-core.version>6.2.11</spring-core.version>
+        <spring-security.version>6.3.4</spring-security.version>
         <tomcat.version>10.1.55</tomcat.version>
         <logback.version>1.5.25</logback.version>
         <assertj.version>3.27.7</assertj.version>
@@ -44,6 +45,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring-webmvc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
