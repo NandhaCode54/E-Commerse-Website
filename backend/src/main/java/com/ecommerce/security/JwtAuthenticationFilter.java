@@ -53,12 +53,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     String email = jwtUtil.extractEmail(token);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(
-                                    userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    // A token may outlive an account being disabled - never
+                    // authenticate a disabled user even with a still-valid token.
+                    if (userDetails.isEnabled()) {
+                        UsernamePasswordAuthenticationToken authentication =
+                                new UsernamePasswordAuthenticationToken(
+                                        userDetails, null, userDetails.getAuthorities());
+                        authentication.setDetails(
+                                new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
                 }
             } catch (UsernameNotFoundException ex) {
                 // Token references a user that no longer exists - stay unauthenticated.

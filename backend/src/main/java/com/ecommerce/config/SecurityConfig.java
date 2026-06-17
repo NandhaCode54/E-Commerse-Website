@@ -66,7 +66,11 @@ public class SecurityConfig {
             // CSRF is not needed: stateless JWT API with no cookie-based sessions.
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Public endpoints
+                // Auth endpoints that act on the current principal need a valid token.
+                // These must be listed BEFORE the public "/api/auth/**" rule.
+                .requestMatchers("/api/auth/me", "/api/auth/change-password").authenticated()
+                // Public endpoints (register, login, refresh, logout, password reset,
+                // email verification)
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()

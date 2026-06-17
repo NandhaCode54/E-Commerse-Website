@@ -1,0 +1,53 @@
+# ===== Java / Maven (backend) =====
+target/
+*.class
+*.jar
+!**/.mvn/wrapper/maven-wrapper.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties.bak
+
+# ===== Node / React (frontend) =====
+node_modules/
+/frontend/build/
+build/
+coverage/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ===== Environment / secrets =====
+.env
+.env.*
+!.env.example
+*.local
+
+# ===== Logs / temp build output =====
+*.log
+run.log
+build.log
+fe.log
+
+# ===== Claude Code local config =====
+.claude/
+
+# ===== IDE / editor =====
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini

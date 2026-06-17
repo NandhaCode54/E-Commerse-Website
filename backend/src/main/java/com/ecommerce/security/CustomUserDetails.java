@@ -19,12 +19,14 @@ public class CustomUserDetails implements UserDetails {
     private final String email;
     private final String password;
     private final User.Role role;
+    private final boolean enabled;
 
     public CustomUserDetails(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole();
+        this.enabled = user.isEnabled();
     }
 
     public Long getId() {
@@ -68,6 +70,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        // Honour the persisted flag so disabled accounts cannot authenticate.
+        return enabled;
     }
 }
